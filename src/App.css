@@ -1,0 +1,121 @@
+html, body {
+  height: 100vh;
+  background-color: #000000;
+  overflow: hidden;
+  font-family: "Noto Sans", sans-serif;
+}
+
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+#root {
+  height: 100vh;
+  width: 100vw;
+}
+
+canvas {
+  height: 100vh;
+  width: 100vw;
+  position: relative;
+  z-index: 9;
+}
+
+#logo {
+  display: none; /* Hidden logo */
+}
+
+#control-bar-wrapper {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  position: fixed;
+  top: 0px;
+  left: 0px;
+  z-index: 10;
+  padding: 0.5rem;
+}
+
+#control-bar {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+}
+
+.arc-counter {
+  color: rgba(102, 178, 178, 0.8);
+  font-size: 0.9rem;
+  background-color: rgba(0, 0, 0, 0.4);
+  padding: 0.3rem 0.6rem;
+  border-radius: 0.25rem;
+}
+
+.toggle {
+  background-color: rgba(102, 178, 178, 0.15);
+  backdrop-filter: blur(5px);
+  padding: 0.5rem;
+  border-radius: 0.25rem;
+  height: 2rem;
+  border: none;
+  outline: none;
+  cursor: pointer;
+  box-shadow: 0 0 10px rgba(77, 208, 225, 0.2);
+  transition: all 0.3s ease;
+}
+
+.toggle:is(:hover, :focus-visible) {
+  background-color: rgba(102, 178, 178, 0.25);
+  box-shadow: 0 0 15px rgba(77, 208, 225, 0.4);
+}
+
+.toggle > i {
+  color: #4dd0e1;
+  display: none;
+  height: 1rem;
+  width: 1rem;
+  font-size: 0.6rem;
+  line-height: 1rem;
+  text-align: center;
+}
+
+#restart-button i {
+  display: block;
+  color: #4dd0e1;
+}
+
+.toggle[data-toggled="true"] > i.on {
+  display: block;
+}
+
+.toggle[data-toggled="false"] > i.off {
+  display: block;
+}
+
+#sound-message {
+  position: fixed;
+  top: 36%;
+  left: 50%;
+  translate: -50% -50%;
+  z-index: 3;
+  padding: 0.75rem;
+  background-color: rgba(30, 95, 143, 0.15);
+  border-radius: 0.4rem;
+  transition: opacity 1000ms;
+  pointer-events: none;
+  border: 1px solid rgba(77, 208, 225, 0.2);
+  box-shadow: 0 0 20px rgba(77, 208, 225, 0.15);
+}
+
+body:has(#sound-toggle[data-toggled="true"]) #sound-message,
+#sound-toggle[data-toggled="true"] ~ #sound-message {
+  opacity: 0;
+}
+
+#sound-message > p {
+  color: #4dd0e1;
+  font-size: 0.9rem;
+  white-space: nowrap;
+  letter-spacing: 0.5px;
+}
